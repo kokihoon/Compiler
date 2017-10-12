@@ -8,6 +8,12 @@ def error():
     print("error")
     exit()
 
+def blank():
+    global token
+    global count
+    global token_list    
+    token = token_list[count]
+    count += 1
 
 def term():
     global token
@@ -15,9 +21,8 @@ def term():
     global token_list
 
     temp = factor()
-    while(token == ' ' or token=='  '):
-        token = token_list[count]
-        count += 1
+    while(token == ' ' or token=='\t'):
+        blank()
     
     while(token =='*'):
         match('*')
@@ -29,9 +34,8 @@ def factor():
     global count
     global token_list
     temp = ''
-    while(token == ' ' or token=='  '):
-        token = token_list[count]
-        count += 1
+    while(token == ' ' or token=='\t'):
+        blank()
 
     if(token=='('):
         match('(')
@@ -64,9 +68,8 @@ def exp1():
     global token_list
     temp = term()
 
-    while(token == ' ' or token == '    '):
-        token = token_list[count]
-        count += 1
+    while(token == ' ' or token == '\t'):
+        blank()
     
     while(token=='+' or token=='-'):
         if(token == '+'):
